@@ -48,7 +48,7 @@ rooms = {
         'info': "You're in the basement. North is the lower hallway upstairs. "
                 "To your right are two codes scratched into the wall: "
                 "0451 and 1234. "
-                "What could they be for? ",
+                "Maybe you could USE a CODE... but for what?",
         'paths': {'north': 'lower hallway'}
     },
 }
@@ -56,6 +56,11 @@ rooms = {
 
 # Starting room.
 main_room = 'bedroom'
+
+
+def quit_game():
+    if ask in ['quit']:
+        quit()
 
 
 # User inputs something invalid, such as gibberish.
@@ -75,13 +80,15 @@ def door_code():
         if ask_two == "1234":
             print("The house explodes and you die. \nBAD END")
             exit()
+        else:
+            print("That doesn't seem to work.")
 
 
 while True:
     # Show the info of the current room.
     print(rooms[main_room]['info'])
     # What does the player want to do next?
-    ask = input("Next action: ")
+    ask = input("Next action: ").lower()
     # Run door_code() function above.
     door_code()
 
@@ -97,3 +104,4 @@ while True:
     else:
         # Run invalid_input() function above.
         invalid_input()
+    quit_game()
